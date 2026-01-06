@@ -3,7 +3,8 @@ import requests
 import os
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, RedirectResponse
-
+import dotenv
+dotenv.load_dotenv()
 app = FastAPI()
 
 # ==========================================
