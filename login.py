@@ -19,7 +19,7 @@ APP_SECRET = os.getenv("APP_SECRET")
 # 2. YOUR SERVER URL (MUST BE HTTPS)
 # If using Ngrok: "https://xxxx-xx-xx.ngrok-free.app"
 # If using Render: "https://your-app-name.onrender.com"
-BASE_URL = "https://testinstalogin.onrender.com/" 
+BASE_URL = "https://testinstalogin.onrender.com" 
 
 # ==========================================
 
