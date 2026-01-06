@@ -4,21 +4,23 @@ import os
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, RedirectResponse
 import dotenv
+
+# Load environment variables (for local testing)
 dotenv.load_dotenv()
+
 app = FastAPI()
 
 # ==========================================
-# 👇 CONFIGURATION (EDIT THIS SECTION) 👇
+# 👇 CONFIGURATION 👇
 # ==========================================
 
 # 1. YOUR APP CREDENTIALS
+# Ensure you add these in Render -> Dashboard -> Environment
 APP_ID = os.getenv("APP_ID")
 APP_SECRET = os.getenv("APP_SECRET") 
 
-
 # 2. YOUR SERVER URL (MUST BE HTTPS)
-# If using Ngrok: "https://xxxx-xx-xx.ngrok-free.app"
-# If using Render: "https://your-app-name.onrender.com"
+# ✅ Correct: No trailing slash at the end
 BASE_URL = "https://testinstalogin.onrender.com" 
 
 # ==========================================
@@ -106,7 +108,7 @@ async def login():
     auth_url = (
         f"https://www.instagram.com/oauth/authorize?"
         f"client_id={APP_ID}&"
-        f"redirect_uri={REDIRECT_URI}&"
+        f"redirect_uri={REDIRECT_URI}&" # <--- IMPORTANT: Added back
         f"scope={scope}&"
         f"response_type=code"
     )
@@ -126,7 +128,7 @@ async def auth_callback(code: str = None, error: str = None, error_description: 
         "client_id": APP_ID,
         "client_secret": APP_SECRET,
         "grant_type": "authorization_code",
-        "redirect_uri": REDIRECT_URI,
+        "redirect_uri": REDIRECT_URI, # <--- IMPORTANT: Added back
         "code": code
     }
     
